@@ -1,0 +1,63 @@
+pipeline {
+    agent any 
+    stages {
+        stage('S1 8502229J') {
+            steps {
+                sh 'echo "Stage1_8502229J: Release Environment Preparation Completed"'
+            }
+        }
+
+        stage('S2 8502229J') {
+            steps {
+                sh 'echo "Stage2_8502229J: Release Container WebApp_8502229J Created Completed"'
+                sh 'echo "docker rm WebApp_8502229J"'
+                sh 'echo "docker run -d -it -p 31200:80 --name=WebApp_8502229J wb1_image_8502229j /bin/sh"'
+            }
+        }
+
+        stage('S3 8502229J') {
+            parallel {
+                stage('S3 8502229J API Test') {
+                    steps {
+                        sh 'echo "Stage3_8502229J: API Test Completed"'
+                    }
+                }
+                stage('S3 8502229J Scan Test') {
+                    steps {
+                        sh 'echo "Stage3_8502229J: Scan Test Completed"'
+                    }
+                }
+            }
+        }
+
+        stage('S4 8502229J') {
+            steps {
+                script {
+                    def userInput = input(
+                        id: 'userInput',
+                        message: "8502229J, proceed to release the work to the next phase?",
+                        
+                    )
+                    
+                    env.USER_INPUT = userInput
+                }
+            }
+        }
+
+        stage('S5 8502229J') {
+           steps {
+                script {
+                    def userInput = env.USER_INPUT
+
+                    if (userInput == 'Proceed') {
+                        echo "User chose to proceed. Releasing the work to the next phase."
+                        // Add your steps to release work to the next phase here
+                    } else if (userInput == 'Abort') {
+                        echo "User chose to abort. Aborting the process."
+                        // Add any necessary steps for aborting here, or keep this stage empty
+                    }
+                }
+            }
+        }
+    }
+}
