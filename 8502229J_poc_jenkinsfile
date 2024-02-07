@@ -27,7 +27,7 @@ pipeline {
                     echo "ST4 8502229J: TEST server's testing result has been inspected."
                     def userInput = input(
                     id: 'userInput',
-                    message: 'Choose an action',
+                    message: "Choose an action",
                     parameters: [
                         choice(choices: ['Proceed Production', 'RollBack Test'], description: 'Select an action to take')]
                     )
