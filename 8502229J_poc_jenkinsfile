@@ -1,9 +1,9 @@
 pipeline {
     agent any 
     stages {
-        stage('S1 8502229J') {
+        stage('ST1 8502229J') {
             steps {
-                sh 'echo "Stage1_8502229J: Release Environment Preparation Completed"'
+                sh 'echo "ST18502229J: Environment is prepared. Start to rollout to TEST server"'
             }
         }
 
@@ -30,31 +30,55 @@ pipeline {
             }
         }
 
-        stage('S4 8502229J') {
+        stage('ST4 8502229J') {
             steps {
                 script {
+                    echo "ST4 8502229J: TEST server's testing result has been inspected."
                     def userInput = input(
-                        id: 'userInput',
-                        message: "8502229J, proceed to release the work to the next phase?",
-                        
+                    id: 'userInput',
+                    message: 'Choose an action',
+                    parameters: [
+                        choice(choices: ['Proceed Production', 'RollBack Test'], description: 'Select an action to take')]
                     )
-                    
-                    env.USER_INPUT = userInput
-                }
+
+                    if (userInput == 'Proceed Production') {
+                        echo 'Proceeding to Productioon...'
+                    } else if (userInput == 'RollBack Test') {
+                        echo 'Rolling back the test...'
+                    } else {
+                        error 'Invalid choice selected'
+                    }
             }
         }
+    }
 
-        stage('S5 8502229J') {
+
+        stage('ST5 8502229J){
+            steps{
+                script{
+                    def choice = input(message: 'Choose an action:', 
+                    parameters: [choice(choices: ['Proceed Production', 'RollbackTest'], 
+                    description: 'Select an action to perform')])
+
+                    if (choice == "Proceed Production'){
+                        echo "ST5 8502229J: Proceed to Production Phase"
+                        sh "bolt script run '
+}
+}
+}
+
+}
+
+
+        stage('ST6 8502229J') {
            steps {
                 script {
                     def userInput = env.USER_INPUT
 
-                    if (userInput == 'Proceed') {
-                        echo "User chose to proceed. Releasing the work to the next phase."
-                        // Add your steps to release work to the next phase here
-                    } else if (userInput == 'Abort') {
-                        echo "User chose to abort. Aborting the process."
-                        // Add any necessary steps for aborting here, or keep this stage empty
+                    if (userInput == 'Proceed Production') {
+                        echo "ST68502229J:Production server is updated."
+                    } else if (userInput == 'Rollback Test') {
+                        echo "ST68502229J: TEST server is rollback."
                     }
                 }
             }
