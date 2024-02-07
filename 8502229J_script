@@ -6,5 +6,5 @@ puppet resource service apache2 ensure=running
 puppet resource file /tmp/8502229J/work ensure=absent force=true
 puppet resource file /tmp/8502229J/work ensure=directory
 cd /tmp/8502229J/work
-git clone https://github.com/JoeyTZE/POC_REPO.git
+git clone https://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@github.com/JoeyTZE/POC_REPO.git
 cp -p /tmp/8502229J/work/8502229J_index.html /var/www/html/index.html
