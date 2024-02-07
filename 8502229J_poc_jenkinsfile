@@ -9,7 +9,7 @@ pipeline {
 
         stage('ST2 8502229J') {
             steps {
-                
+                sh 'rm -f BKUP-TEST-image'
                 echo "ST2 8502229J: TEST server is backup and updated"
             }
         }
