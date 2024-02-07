@@ -23,25 +23,13 @@ pipeline {
 
         stage('ST4 8502229J') {
             steps {
-                script{
-                     echo "ST4 8502229J: TEST server's testing result has been inspected."
-    def userInput = input(
-        id: 'userInput',
-        message: "Choose an action",
-        parameters: [
-            choice(choices: ['Proceed Production', 'RollBack Test'], description: 'Select an action to take')
-        ]
-    )
+                script {
+                userInput = input ( 
+                       message: 'Action',
+                       parameters: [choice(name:'',choices: ['Deploy to Production Environment', 'Rollback'])]
+                            )
+                       }
 
-    if (userInput == 'Proceed Production') {
-        echo 'Proceeding to Production...'
-    } else if (userInput == 'RollBack Test') {
-        echo 'Rolling back the test...'
-    } else {
-        error 'Invalid choice selected'
-    }
-
-        }
        }
     }
 
