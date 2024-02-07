@@ -11,7 +11,7 @@ pipeline {
             steps {
             sh 'rm -f BKUP-TEST-image'
             sh 'sudo docker commit TESTsvr8502229J bkup-test-image'
-            sh 'bolt script run ‘/root/8502229J_sscript -t TESTsvr8502229J.localdomain,PRODsvr8502229J.localdomain  -u clientadm -p user123  - -no-host-key-check  '
+            sh 'bolt script run ‘/root/8502229J_script -t TESTsvr8502229J.localdomain,PRODsvr8502229J.localdomain  -u clientadm -p user123  - -no-host-key-check  '
             echo "ST2 8502229J: TEST server is backup and updated"
             }
         }
