@@ -28,6 +28,7 @@ pipeline {
                        message: 'Action',
                        parameters: [choice(name:'',choices: ['Deploy to Production Environment', 'Rollback'])]
                             )
+                        env.USERINPUT = userInput
                        }
 
        }
