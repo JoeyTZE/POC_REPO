@@ -28,7 +28,8 @@ pipeline {
                        message: 'Action',
                        parameters: [choice(name:'',choices: ['Deploy to Production Environment', 'Rollback'])]
                             )
-                       
+                       echo “ST4 <Your POLITE ID>: TEST server’s testing result has been inspected”
+
                        }
                     
                    }
