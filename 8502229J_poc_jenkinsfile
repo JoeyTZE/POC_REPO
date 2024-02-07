@@ -10,7 +10,7 @@ pipeline {
         stage('ST2 8502229J') {
             steps {
             sh 'rm -f BKUP-TEST-image'
-            sh 'docker commit TESTsvr8502229J bkup-test-image'
+            sh 'sudo docker commit TESTsvr8502229J bkup-test-image'
             echo "ST2 8502229J: TEST server is backup and updated"
             }
         }
