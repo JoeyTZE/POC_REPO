@@ -17,7 +17,7 @@ pipeline {
         stage('S3 8502229J') {
             steps{
                 script{
-                    sh "curl –ls http://TESTsvr8502229J.localdomain |head –n 1  > /tmp/TEST-result-file"
+                    sh "curl –IS http://TESTsvr8502229J.localdomain |head –n 1  > /tmp/TEST-result-file"
                     
                     }
                 }
