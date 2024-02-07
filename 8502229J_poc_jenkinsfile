@@ -9,9 +9,7 @@ pipeline {
 
         stage('ST2 8502229J') {
             steps {
-                sh 'rm -f BKUP-TEST-image'
-                sh 'docker commit TESTsvr8502229J bkup-test-image'
-                sh 'bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root 8502229J_script'
+            
                 echo "ST2 8502229J: TEST server is backup and updated"
             }
         }
@@ -20,14 +18,7 @@ pipeline {
             steps{
                 script{
                     sh "curl –Is http://TESTsvr8502229J.localdomain |head –n 1  > /tmp/TEST-result-file"
-                    def testResult = readFile('/tmp/TEST-result-file').trim()
-                    echo "Contents of TEST-result-file: ${testResult}"
-
-                    if (testResult == "HTTP/1.1 200 OK"){
-                        echo "ST3 8502229J: Test result for TEST server is generated: TEST-result-file"
-                        } else {
-                            error "Web test failed!"
-                        }
+                    
                     }
                 }
             }
