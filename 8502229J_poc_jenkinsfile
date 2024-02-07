@@ -64,7 +64,7 @@ pipeline {
                     parameters: [choice(choices: ['Proceed Production', 'RollbackTest'], 
                     description: 'Select an action to perform')])
 
-                    if (choice == "Proceed Production'){
+                    if (choice == 'Proceed Production'){
                         echo "ST5 8502229J: Proceed to Production Phase"
                         sh 'bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root 8502229J_script'
                     } else if (choice == 'Rollback Test'){
