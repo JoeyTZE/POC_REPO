@@ -23,7 +23,7 @@ pipeline {
 
         stage('ST4 8502229J') {
             steps {
-                {
+                
                     def userInput = input(
                         id: 'userInput',
                         message: "8502229J, proceed to release the work to the next phase?",
