@@ -49,6 +49,7 @@ pipeline {
             }
 
         }
+}
 
 
         stage('ST6 8502229J') {
