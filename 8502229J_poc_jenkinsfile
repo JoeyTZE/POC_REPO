@@ -34,8 +34,7 @@ pipeline {
                    }
 
        }
-    }
-
+    
 
         stage('ST5 8502229J') {
             steps{
