@@ -3,15 +3,16 @@ pipeline {
     stages {
         stage('ST1 8502229J') {
             steps {
-                sh 'echo "ST18502229J: Environment is prepared. Start to rollout to TEST server"'
+                sh 'echo "ST1 8502229J: Environment is prepared. Start to rollout to TEST server"'
             }
         }
 
         stage('S2 8502229J') {
             steps {
-                sh 'echo "Stage2_8502229J: Release Container WebApp_8502229J Created Completed"'
-                sh 'echo "docker rm WebApp_8502229J"'
-                sh 'echo "docker run -d -it -p 31200:80 --name=WebApp_8502229J wb1_image_8502229j /bin/sh"'
+                sh 'rm -f BKUP-TEST-image'
+                sh 'docker commit TESTsvr8502229J BKUP-TEST-image'
+                sh 'bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root 8502229J_script'
+                echo "ST2 8502229J: TEST server is backup and updated"
             }
         }
 
@@ -76,9 +77,9 @@ pipeline {
                     def userInput = env.USER_INPUT
 
                     if (userInput == 'Proceed Production') {
-                        echo "ST68502229J:Production server is updated."
+                        echo "ST6 8502229J:Production server is updated."
                     } else if (userInput == 'Rollback Test') {
-                        echo "ST68502229J: TEST server is rollback."
+                        echo "ST6 8502229J: TEST server is rollback."
                     }
                 }
             }
