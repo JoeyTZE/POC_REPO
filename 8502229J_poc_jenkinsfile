@@ -28,8 +28,15 @@ pipeline {
                        message: 'Action',
                        parameters: [choice(name:'',choices: ['Deploy to Production Environment', 'Rollback'])]
                             )
-                        env.USERINPUT = userInput
+                       
                        }
+                script {
+                   if (userInput == 'Rollback') {
+                           echo 'Rollback Completed'
+                   } else if (userInput == 'Deploy to Production Environment') {
+  	                    echo "Production container updated"
+                   }	      
+                   }
 
        }
     }
