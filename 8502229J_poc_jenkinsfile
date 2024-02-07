@@ -45,7 +45,7 @@ pipeline {
                         choice(choices: ['Proceed Production', 'RollBack Test'], description: 'Select an action to take')]
                     )
 
-                    if (userInput == 'Proceed Production') {
+                    if (userInput == 'Proceed Production") {
                         echo 'Proceeding to Productioon...'
                     } else if (userInput == 'RollBack Test') {
                         echo 'Rolling back the test...'
