@@ -28,7 +28,7 @@ pipeline {
                        message: 'Action',
                        parameters: [choice(name:'',choices: ['Deploy to Production Environment', 'Rollback'])]
                             )
-                       echo “ST4 8502229J: TEST server’s testing result has been inspected”
+                      
 
                        }
                     
