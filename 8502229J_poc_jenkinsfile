@@ -17,8 +17,7 @@ pipeline {
         stage('S3 8502229J') {
             steps{
                 script{
-                    def politeID = "8502229J"
-                    sh "curl –Is http://TESTsvr${politeId}.localdomain|head –n 1  > /tmp/TEST-result-file"
+                    sh "curl –Is http://TESTsvr8502229J.localdomain|head –n 1  > /tmp/TEST-result-file"
                     def testResult = readFile('/tmp/TEST-result-file').trim()
                     echo "Contents of TEST-result-file: ${testResult}"
 
