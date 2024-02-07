@@ -7,7 +7,7 @@ pipeline {
             }
         }
 
-        stage('S2 8502229J') {
+        stage('ST2 8502229J') {
             steps {
                 sh 'rm -f BKUP-TEST-image'
                 sh 'docker commit TESTsvr8502229J BKUP-TEST-image'
